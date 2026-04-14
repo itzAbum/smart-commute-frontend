@@ -15,7 +15,7 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'django-insecure-&w3#5^xoa9mo(^
 
 DEBUG = os.environ.get('DEBUG', 'True') == 'True'
 
-ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', '').split(',') + ['127.0.0.1', 'localhost']
+ALLOWED_HOSTS = ['*']
 
 from pathlib import Path
 
