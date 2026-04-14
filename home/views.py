@@ -335,7 +335,7 @@ def route(request):
 
 @login_required
 def departure(request):
-    from datetime import datetime
+    from datetime import datetime, timezone, timedelta
 
     api_user_id = request.session.get('api_user_id')
     if not api_user_id:
@@ -353,12 +353,10 @@ def departure(request):
     response = req.get(f"{API}/schedules/{api_user_id}")
     schedules = response.json()
 
-    from datetime import timezone, timedelta
     est = timezone(timedelta(hours=-4))
     now = datetime.now(est)
     current_time = now.time()
     today = now.strftime("%A")
-    current_time = now.time()
 
     next_class = None
     next_class_building = None
