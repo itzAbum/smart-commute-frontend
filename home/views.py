@@ -353,7 +353,10 @@ def departure(request):
     response = req.get(f"{API}/schedules/{api_user_id}")
     schedules = response.json()
 
-    now = datetime.now()
+    from datetime import timezone, timedelta
+    est = timezone(timedelta(hours=-4))
+    now = datetime.now(est)
+    current_time = now.time()
     today = now.strftime("%A")
     current_time = now.time()
 
@@ -363,7 +366,8 @@ def departure(request):
     for s in schedules:
         if today in s['days']:
             start_dt = datetime.fromisoformat(s['start'])
-            if start_dt.time() > current_time:
+            start_dt_est = start_dt.replace(tzinfo=timezone.utc).astimezone(est)
+            if start_dt_est.time() > current_time.replace(tzinfo=est):
                 building = Building.objects.filter(id=s['building_id']).first()
                 next_class = s
                 next_class_building = building
