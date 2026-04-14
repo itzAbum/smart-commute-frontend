@@ -358,11 +358,9 @@ def departure(request):
     current_time = now.time()
     today = now.strftime("%A")
 
-    
-
-print("TODAY:", today)
-print("CURRENT TIME:", current_time)
-print("SCHEDULES:", schedules)
+    print("TODAY:", today)
+    print("CURRENT TIME EST:", current_time)
+    print("ALL SCHEDULES:", schedules)
 
     next_class = None
     next_class_building = None
@@ -409,7 +407,6 @@ print("SCHEDULES:", schedules)
         "arrival_time": start_dt.strftime("%I:%M %p"),
         "recommended_departure": recommended_departure.strftime("%I:%M %p"),
     })
-
 
 # ------------------------------
 # MISC PAGES
