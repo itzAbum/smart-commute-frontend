@@ -9,6 +9,13 @@ https://docs.djangoproject.com/en/6.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/6.0/ref/settings/
 """
+import os
+
+SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'django-insecure-&w3#5^xoa9mo(^&xwm9_+!e@a!xw84u0!75h&+hi4z3hs0q_p^')
+
+DEBUG = os.environ.get('DEBUG', 'True') == 'True'
+
+ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', '').split(',') + ['127.0.0.1', 'localhost']
 
 from pathlib import Path
 
