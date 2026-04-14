@@ -358,6 +358,13 @@ def departure(request):
     current_time = now.time()
     today = now.strftime("%A")
 
+    response = req.get(f"{API}/schedules/{api_user_id}")
+schedules = response.json()
+
+print("TODAY:", today)
+print("CURRENT TIME:", current_time)
+print("SCHEDULES:", schedules)
+
     next_class = None
     next_class_building = None
 
