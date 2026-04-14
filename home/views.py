@@ -369,6 +369,7 @@ def departure(request):
         if today in s['days']:
             start_dt = datetime.fromisoformat(s['start'])
             start_dt_est = start_dt.replace(tzinfo=timezone.utc).astimezone(est)
+            print(f"CHECKING: {s['course']} | start_est: {start_dt_est.time()} | current: {current_time} | result: {start_dt_est.time() > current_time}")
             if start_dt_est.time() > current_time:
                 building = Building.objects.filter(id=s['building_id']).first()
                 next_class = s
