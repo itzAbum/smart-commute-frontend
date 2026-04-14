@@ -22,6 +22,8 @@ DEBUG = os.environ.get('DEBUG', 'True') == 'True'
 ALLOWED_HOSTS = ['*']
 CSRF_TRUSTED_ORIGINS = ['https://smart-commute-frontend-production.up.railway.app']
 
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
