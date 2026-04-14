@@ -1,0 +1,85 @@
+{% load static %}
+
+<h2 class="title">Route & Traffic</h2>
+
+<div class="route-container">
+
+    <p class="description">
+        Click the button below to calculate your route and view current traffic conditions.
+    </p>
+
+    <button class="calc-btn" onclick="calculateRoute()">Calculate Route</button>
+
+    <h3 class="subtitle">Route Result</h3>
+    <p id="routeResult" class="result-box">No route calculated yet.</p>
+
+    <h3 class="subtitle">Traffic Conditions</h3>
+    <p id="trafficResult" class="result-box">Traffic data not available yet.</p>
+
+</div>
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background: #f5f5f5;
+    }
+
+    .title {
+        text-align: center;
+        margin-top: 30px;
+        color: #1e4d8a;
+    }
+
+    .route-container {
+        width: 80%;
+        margin: 20px auto;
+        background: white;
+        padding: 25px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    .description {
+        text-align: center;
+        margin-bottom: 20px;
+        font-size: 16px;
+    }
+
+    .calc-btn {
+        display: block;
+        margin: 0 auto 25px auto;
+        padding: 12px 20px;
+        background: #4a90e2;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 16px;
+    }
+
+    .calc-btn:hover {
+        background: #357ab8;
+    }
+
+    .subtitle {
+        margin-top: 20px;
+        color: #1e4d8a;
+    }
+
+    .result-box {
+        background: #e8eef7;
+        padding: 12px;
+        border-radius: 6px;
+        margin-top: 8px;
+    }
+</style>
+
+<script>
+function calculateRoute() {
+    let route = "Fastest route from your location to campus is via Main St. (12 minutes).";
+    let traffic = "Moderate traffic detected. Expect slight delays.";
+
+    document.getElementById("routeResult").innerText = route;
+    document.getElementById("trafficResult").innerText = traffic;
+}
+</script>

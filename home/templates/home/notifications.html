@@ -1,0 +1,99 @@
+{% extends "home/base.html" %}
+
+{% block content %}
+
+<h2 class="title">Notifications</h2>
+
+<div class="notify-container">
+
+    <p class="description">
+        Choose how you want to be notified before it's time to leave.
+    </p>
+
+    <!-- Notification Toggle -->
+    <label for="notifyToggle">Enable Notifications</label>
+    <select id="notifyToggle">
+        <option value="off">Off</option>
+        <option value="on">On</option>
+    </select>
+
+    <!-- Notification Timing -->
+    <label for="notifyTime">Notify Me Before Departure</label>
+    <select id="notifyTime">
+        <option value="5">5 minutes before</option>
+        <option value="10">10 minutes before</option>
+        <option value="15">15 minutes before</option>
+        <option value="30">30 minutes before</option>
+    </select>
+
+    <button class="save-btn" onclick="saveNotificationSettings()">Save Settings</button>
+
+    <h3 class="subtitle">Current Notification Settings</h3>
+    <p id="savedSettings" class="result-box">No settings saved yet.</p>
+
+</div>
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background: #f5f5f5;
+    }
+
+    .title {
+        text-align: center;
+        margin-top: 30px;
+        color: #1e4d8a;
+    }
+
+    .notify-container {
+        width: 80%;
+        margin: 20px auto;
+        background: white;
+        padding: 25px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    label {
+        font-weight: bold;
+    }
+
+    select {
+        padding: 10px;
+        border-radius: 6px;
+        border: 1px solid #ccc;
+    }
+
+    .save-btn {
+        margin-top: 10px;
+        padding: 12px;
+        background: #4a90e2;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 16px;
+        width: 200px;
+        align-self: center;
+    }
+
+    .save-btn:hover {
+        background: #357ab8;
+    }
+
+    .subtitle {
+        margin-top: 20px;
+        color: #1e4d8a;
+    }
+
+    .result-box {
+        background: #e8eef7;
+        padding: 12px;
+        border-radius: 6px;
+    }
+</style>
+
+{% endblock %}

@@ -1,0 +1,89 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Smart Commute</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f5f5f5;
+            opacity: 0;
+            animation: fadeIn 0.8s forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        header {
+            background: #1e4d8a;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        /* NAVBAR */
+        .navbar {
+            background: #133b6b;
+            padding: 12px 20px;
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .navbar a:hover {
+            text-decoration: underline;
+        }
+
+        .right {
+            margin-left: auto;
+        }
+
+        .navbar a.active {
+            text-decoration: underline;
+            color: #a8d0ff;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>Smart Commute</h1>
+        <p>Your personalized navigation and schedule assistant</p>
+    </header>
+
+    <nav class="navbar">
+        <a href="{% url 'home' %}">Home</a>
+        <a href="{% url 'schedule' %}">Schedule</a>
+        <a href="{% url 'location' %}">Starting Location</a>
+        <a href="{% url 'schedule' %}">Route & Traffic</a>
+        <a href="{% url 'departure' %}">Departure Time</a>
+        <a href="{% url 'settings' %}">Settings</a>
+
+        {% if user.is_authenticated %}
+            <a href="{% url 'logout' %}" class="right">Logout</a>
+        {% else %}
+            <a href="{% url 'login' %}" class="right">Login</a>
+        {% endif %}
+    </nav>
+
+
+
+    {% block content %}
+    {% endblock %}
+
+</body>
+</html>

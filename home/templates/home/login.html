@@ -1,0 +1,55 @@
+{% extends "home/base.html" %}
+
+{% block content %}
+
+<div class="login-container" style="
+    width: 350px;
+    margin: 80px auto;
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+">
+    <h2 style="text-align:center; color:#1e4d8a;">Login</h2>
+
+    <form method="POST">
+        {% csrf_token %}
+        <input type="text" name="username" placeholder="Username" required style="
+            width:100%;
+            padding:10px;
+            margin-top:10px;
+            border-radius:6px;
+            border:1px solid #ccc;
+        ">
+        <input type="password" name="password" placeholder="Password" required style="
+            width:100%;
+            padding:10px;
+            margin-top:10px;
+            border-radius:6px;
+            border:1px solid #ccc;
+        ">
+        <button type="submit" style="
+            width:100%;
+            padding:12px;
+            margin-top:20px;
+            background:#1e4d8a;
+            color:white;
+            border:none;
+            border-radius:6px;
+            cursor:pointer;
+        ">Login</button>
+
+        {% if error %}
+            <p style="color:red; text-align:center; margin-top:10px;">{{ error }}</p>
+        {% endif %}
+    </form>
+
+    <p style="margin-top: 15px; text-align: center;">
+        Don't have an account?
+        <a href="{% url 'register' %}" style="color: #4a90e2; font-weight: bold;">
+            Create an account
+        </a>
+    </p>
+</div>
+
+{% endblock %}
