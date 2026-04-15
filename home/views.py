@@ -326,6 +326,7 @@ def route(request):
         "destinations": f"{building.latitude},{building.longitude}",
         "mode": "driving",
         "departure_time": "now",
+        "units": "imperial",
         "key": "AIzaSyCPpUHaZ651VoNnSKa9uMwKaIWTd7EAhRc"
     }).json()
 
