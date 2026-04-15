@@ -309,7 +309,6 @@ def route_old(request):
 
 @login_required
 def route(request):
-    """Main route page using coordinates."""
     building_id = request.GET.get("building")
     if not building_id:
         return HttpResponse("Error: No building selected.")
@@ -320,12 +319,38 @@ def route(request):
     if not user_location:
         return HttpResponse("Error: No saved location found.")
 
-    
+    # Call Google Maps Distance Matrix API for live traffic data
+    import requests as req
+    maps_response = req.get("https://maps.googleapis.com/maps/api/distancematrix/json", params={
+        "origins": f"{user_location.latitude},{user_location.longitude}",
+        "destinations": f"{building.latitude},{building.longitude}",
+        "mode": "driving",
+        "departure_time": "now",
+        "key": "AIzaSyCPpUHaZ651VoNnSKa9uMwKaIWTd7EAhRc"
+    }).json()
+
+    try:
+        element = maps_response['rows'][0]['elements'][0]
+        distance = element['distance']['text']
+        duration = element['duration']['text']
+        duration_traffic = element.get('duration_in_traffic', {}).get('text', duration)
+        traffic_status = "Heavy" if element.get('duration_in_traffic', {}).get('value', 0) > element['duration']['value'] * 1.3 else "Normal"
+    except (KeyError, IndexError):
+        distance = "N/A"
+        duration = "N/A"
+        duration_traffic = "N/A"
+        traffic_status = "Unknown"
+
     return render(request, "home/route.html", {
         "start_lat": user_location.latitude,
         "start_lng": user_location.longitude,
         "end_lat": building.latitude,
         "end_lng": building.longitude,
+        "distance": distance,
+        "duration": duration,
+        "duration_traffic": duration_traffic,
+        "traffic_status": traffic_status,
+        "building_name": building.name,
     })
 
 
